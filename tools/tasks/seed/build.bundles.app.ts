@@ -4,7 +4,7 @@ import * as Builder from 'systemjs-builder';
 import Config from '../../config';
 
 const BUNDLER_OPTIONS = {
-  format: 'cjs',
+  format: 'register',
   minify: true,
   mangle: false
 };
@@ -89,10 +89,10 @@ export = (done: any) => {
     join(`${dir}/js`, 'app.js'),
     BUNDLER_OPTIONS)
     .then(() => builder.bundle(
-      join('dist/tmp', 'app/about/index'),
+      join('dist/tmp', 'app/about/about.module'),
       join(`${dir}/js`, 'about/about.js')))
     .then(() => builder.bundle(
-      join('dist/tmp', 'app/home/index'),
+      join('dist/tmp', 'app/home/home.module'),
       join(`${dir}/js`, 'home/home.js')))
   .then(() => done())
   .catch((err: any) => done(err));
