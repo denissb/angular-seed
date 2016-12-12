@@ -1,4 +1,9 @@
-import {Component, OnInit, SystemJsNgModuleLoader, Input} from '@angular/core';
+import {
+	Component, 
+	OnInit, 
+	SystemJsNgModuleLoader, 
+	Input, 
+	NgModuleFactory} from '@angular/core';
 
 declare var require: any;
 
@@ -13,5 +18,10 @@ export class ModuleLoaderComponent implements OnInit {
   constructor(private ngModuleFactoryLoader: SystemJsNgModuleLoader) {}
 
   ngOnInit() {
+  	this.ngModuleFactoryLoader.load(this.modulePath).then((ngModule) => {
+  		console.log(ngModule);
+
+  		//NgModuleFactory.create(injector);
+  	});
   }
 }
