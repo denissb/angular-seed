@@ -1,11 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModuleLoaderComponent } from './loader.component';
-
+import { ModuleLoaderDirective } from './loader.directive';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [ ModuleLoaderComponent],
-  exports: [ ModuleLoaderComponent ]
+  declarations: [ ModuleLoaderDirective],
+  exports: [ ModuleLoaderDirective ]
 })
 export class LoaderModule {}

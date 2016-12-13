@@ -72,7 +72,6 @@ export = (done: any) => {
       }
     }
   });
-  
   // builder
   //   .buildStatic(join(Config.TMP_DIR, Config.BOOTSTRAP_PROD_MODULE),
   //     join(Config.JS_DEST, Config.JS_PROD_APP_BUNDLE),

@@ -1,27 +1,31 @@
 import {
   Directive,
-	OnInit,
+  Component,
+  OnInit,
   OnChanges,
-	Input,
+  Input,
   ViewContainerRef,
   ReflectiveInjector,
-  Compiler} from '@angular/core';
+  Compiler,
+  ModuleWithComponentFactories,
+  ComponentRef,
+  DoCheck } from '@angular/core';
 
 declare var require: any;
 
 @Directive({
   selector: 'module-loader'
 })
-export class ModuleLoaderComponent implements OnInit, OnChanges {
+export class ModuleLoaderDirective implements OnInit, DoCheck {
   @Input() modulePath: string;
   @Input() componentName: string;
   @Input() componentAttributes: any;
 
-  private cmpRef: ComponentRef;
+  private cmpRef: ComponentRef<Component | Directive>;
+  private previousComponentAttributes: Object;
 
   constructor(private vcRef: ViewContainerRef,
               private compiler: Compiler) {
-
   }
 
   ngOnInit() {
@@ -33,36 +37,42 @@ export class ModuleLoaderComponent implements OnInit, OnChanges {
   }*/
 
   ngDoCheck() {
+    // This needs to be refactored + supper innificient
     if(JSON.stringify(this.componentAttributes) !== JSON.stringify(this.previousComponentAttributes)) {
       // inputSettings changed
       // some logic here to react to the change
       for (let key in this.componentAttributes) {
         if(this.cmpRef) {
-          this.cmpRef.instance[key] = this.componentAttributes[key];
+          let instance = <any> this.cmpRef.instance;
+          instance[key] = this.componentAttributes[key];
         }
       }
+      //why strigify then parse???
       this.previousComponentAttributes = JSON.parse(JSON.stringify(this.componentAttributes));
     }
   }
 
-  private loadAndCompile(path: string): Promise<ModuleWithComponentFactories<any>> {
+  private loadAndCompile(path: string): void {
     let [module, exportName] = path.split('#');
+
     if (exportName === undefined) {
       exportName = 'default';
     }
 
-    return System.import(module)
+    System.import(module)
       .then((module: any) => module[exportName])
       .then((type: any) => {
         this.compiler.compileModuleAndAllComponentsAsync(type)
-          .then(({moduleFactory, componentFactories}) => {
+          .then(({componentFactories}) => {
             const compFactory = componentFactories.find(x => x.componentType.name === this.componentName);
+
             const injector = ReflectiveInjector.fromResolvedProviders([], this.vcRef.parentInjector);
             //const cmpRef = this.vcRef.createComponent(compFactory, 0, injector, []);
             this.cmpRef = this.vcRef.createComponent(compFactory, 0, injector, []);
-            console.log(this.cmpRef);
+            let instance = <any> this.cmpRef.instance;
+
             for (let key in this.componentAttributes) {
-              this.cmpRef.instance[key] = this.componentAttributes[key];
+              instance[key] = this.componentAttributes[key];
             }
           });
       });
