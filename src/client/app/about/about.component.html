@@ -10,3 +10,20 @@
   <li>TypeScript definition management using Types.</li>
   <li>Basic Service Worker, which implements "Cache then network strategy".</li>
 </ul>
+
+<input type="text" [(ngModel)]="object.message"/>
+
+<module-loader
+  modulePath="/app/contacts/contacts.module.js#ContactsModule"
+  componentName="ContactsComponent"
+  [componentAttributes]="object"></module-loader>
+
+<module-loader
+  modulePath="/app/contacts/contacts.module.js#ContactsModule"
+  componentName="ContactsComponent"
+  [componentAttributes]="{message:'Yes'}"></module-loader>
+
+<!--<module-loader
+  modulePath="/app/contacts/contacts.module.js#ContactsModule"
+  componentName="ContactsInnerComponent"
+  [componentAttributes]="object"></module-loader>-->

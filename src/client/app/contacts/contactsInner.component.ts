@@ -5,11 +5,11 @@ import { Component, Input } from '@angular/core';
  */
 @Component({
   moduleId: module.id,
-  selector: 'ct-about',
-  templateUrl: 'contacts.component.html',
+  selector: 'ct-about-inner',
+  template: 'Contacts Inner Component: {{message}}',
   styleUrls: ['contacts.component.css']
 })
-export class ContactsComponent {
+export class ContactsInnerComponent {
   @Input() message: string;
 
 }
