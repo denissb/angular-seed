@@ -7,9 +7,8 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   moduleId: module.id,
   selector: 'ct-about',
   templateUrl: 'contacts.component.html',
-  styleUrls: ['contacts.component.css'],
+  styleUrls: ['contacts.component.css']
 })
 export class ContactsComponent {
   @Input() message: string;
-
 }

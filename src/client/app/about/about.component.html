@@ -11,6 +11,11 @@
   <li>Basic Service Worker, which implements "Cache then network strategy".</li>
 </ul>
 
+<module-loader
+  modulePath="/app/contacts/contacts.module.js#ContactsModule"
+  componentName="ListenerComponent"
+  [componentAttributes]="streamObject"></module-loader>
+
 <input type="text" (keyup)="onKey($event)" />
 
 <module-loader
@@ -22,8 +27,3 @@
   modulePath="/app/contacts/contacts.module.js#ContactsModule"
   componentName="ContactsComponent"
   [componentAttributes]="{message:'Yes'}"></module-loader>
-
-<!--<module-loader
-  modulePath="/app/contacts/contacts.module.js#ContactsModule"
-  componentName="ContactsInnerComponent"
-  [componentAttributes]="object"></module-loader>-->
