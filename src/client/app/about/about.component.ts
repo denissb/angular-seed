@@ -22,7 +22,7 @@ export class AboutComponent {
   constructor() {
     this.object = { message: 'I am about!' };
     this.streamObject = {
-    	counterStream: this.observable
+    	valueStream: this.observable
     }
   }
 

@@ -7,15 +7,14 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   moduleId: module.id,
   selector: 'ct-onpush',
-  template: '<h1>OnPush {{ counterStream | async }}</h1>',
+  template: '<h1>OnPush {{ valueStream | async }}</h1>',
   styleUrls: ['contacts.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OnPushComponent extends OnInit {
-  @Input() counterStream:Observable<any>;
-  counter:string = '';
+  @Input() valueStream:Observable<any>;
 
   ngOnInit() {
-  	console.log(this.counterStream);
+  	console.log(this.valueStream);
   }
 }
