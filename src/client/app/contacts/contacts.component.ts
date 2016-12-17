@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * This class represents the lazy loaded AboutComponent.
@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   moduleId: module.id,
   selector: 'ct-about',
   templateUrl: 'contacts.component.html',
-  styleUrls: ['contacts.component.css']
+  styleUrls: ['contacts.component.css'],
 })
 export class ContactsComponent {
   @Input() message: string;

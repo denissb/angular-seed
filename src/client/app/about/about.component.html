@@ -11,7 +11,7 @@
   <li>Basic Service Worker, which implements "Cache then network strategy".</li>
 </ul>
 
-<input type="text" [(ngModel)]="object.message"/>
+<input type="text" (keyup)="onKey($event)" />
 
 <module-loader
   modulePath="/app/contacts/contacts.module.js#ContactsModule"
