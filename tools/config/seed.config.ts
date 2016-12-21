@@ -372,6 +372,12 @@ export class SeedConfig {
       '*': 'node_modules/*'
     },
     packages: {
+      'app/contacts.umd': { // must match your folder name
+          format: 'register'
+      },
+      'app/angular-library-starter.umd': { // must match your folder name
+          format: 'register'
+      }
     }
   };
 

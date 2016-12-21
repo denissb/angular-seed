@@ -1,6 +1,10 @@
 <sd-toolbar></sd-toolbar>
 <sd-navbar></sd-navbar>
 
-<module-loader modulePath="/app/contacts/contacts.module.js#ContactsModule" componentName="ContactsComponent"
-               [componentAttributes]="{message: 'Hello world!'}"></module-loader>
+<!-- <module-loader modulePath="./app/contacts/contacts.module.js#ContactsModule" componentName="ContactsComponent" [componentAttributes]="{message: 'Hello world!'}"></module-loader> -->
+
+<module-loader modulePath="/app/contacts.umd#ContactsModule" componentName="ContactsComponent" [componentAttributes]="{message: 'Hello world!'}"></module-loader>
+<!-- <router-outlet></router-outlet> -->
+
+<module-loader modulePath="/app/angular-library-starter.umd#SampleModule" componentName="SampleComponent" [componentAttributes]="{message: 'Hello world!'}"></module-loader>
 <router-outlet></router-outlet>

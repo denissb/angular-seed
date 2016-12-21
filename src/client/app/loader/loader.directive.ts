@@ -64,6 +64,8 @@ export class ModuleLoaderDirective implements OnInit, DoCheck {
       .then((type: any) => {
         this.compiler.compileModuleAndAllComponentsAsync(type)
           .then(({componentFactories}) => {
+            console.log(componentFactories);
+
             const compFactory = componentFactories.find(x => x.componentType.name === this.componentName);
 
             const injector = ReflectiveInjector.fromResolvedProviders([], this.vcRef.parentInjector);
